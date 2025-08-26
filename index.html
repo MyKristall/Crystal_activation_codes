@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Раскрой свой КРИСТАЛЛ ДУШИ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1020; --ink:#eaf0ff; --muted:#a7b0d8; --glow:#ffd966;
+    --radius:18px; --gap:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;color:var(--ink);
+    background:radial-gradient(1200px 600px at 50% -120px,#1a2155 0%,#0d1020 38%,#0d1020 100%);
+    font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.55;
+  }
+  .wrap{max-width:980px;margin:auto;padding:24px}
+  header{display:flex;flex-direction:column;align-items:center;margin:6px 0 22px}
+  h1{margin:0 0 8px;font-weight:900;letter-spacing:.5px;text-align:center;font-size:clamp(26px,5.6vw,48px)}
+  h1 .glow{display:inline-block;color:#ffe69c;text-shadow:0 0 24px rgba(255,217,102,.6),0 0 48px rgba(255,217,102,.25)}
+  .panel{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);border-radius:var(--radius);padding:16px;margin-bottom:18px}
+  .row{display:flex;flex-wrap:wrap;gap:var(--gap)}
+  label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px 6px}
+  .control{flex:1;min-width:220px}
+  input[type="date"],select{width:100%;padding:15px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:#0f1533;color:var(--ink);outline:none}
+  .langbar{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+
+  /* Кнопки – премиум */
+  .btn{appearance:none;border:0;border-radius:14px;padding:16px 22px;font-weight:800;letter-spacing:.3px;cursor:pointer;transition:.2s transform,.2s box-shadow,.2s filter}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:linear-gradient(135deg,#71e2ff,#7afcc5);color:#0b1230;box-shadow:0 10px 28px rgba(61,209,255,.28), inset 0 1px 0 rgba(255,255,255,.5)}
+  .btn.primary:hover{box-shadow:0 14px 36px rgba(61,209,255,.36), inset 0 1px 0 rgba(255,255,255,.55)}
+  .btn.ghost{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));color:var(--ink);border:1px solid rgba(255,255,255,.16)}
+  .btn.ghost:hover{filter:brightness(1.06)}
+
+  .vy{font-size:20px;font-weight:800;margin:10px 0 16px;text-align:center}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+  /* Клетки – позиционные цвета (как на твоём референсе) */
+  .cell{
+    aspect-ratio:1/1;border-radius:18px;display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:32px;color:#0b0f25;border:1px solid rgba(0,0,0,.25);box-shadow:0 10px 30px rgba(0,0,0,.28);
+    background-image:radial-gradient(circle at 50% 45%,rgba(255,255,255,.85),rgba(255,255,255,0) 60%);
+  }
+  /* 10 11 12 */
+  .pos-p10{background-color:#d7b3dd;}  /* нежный лиловый */
+  .pos-p11{background-color:#ff66a8;}  /* ярко-розовый */
+  .pos-p12{background-color:#ffd6dc;}  /* светло-розовый */
+  /* 7 8 9 */
+  .pos-p7 {background-color:#234fdb;}  /* насыщенный синий */
+  .pos-p8 {background-color:#cfe9ff;}  /* светло-голубой */
+  .pos-p9 {background-color:#8b5de0;}  /* фиолетовый */
+  /* 4 5 6 */
+  .pos-p4 {background-color:#b9ff6b;}  /* салатовый */
+  .pos-p5 {background-color:#2d6b3a;}  /* тёмно-зелёный */
+  .pos-p6 {background-color:#a9f2f2;}  /* бирюзовый */
+  /* 1 2 3 */
+  .pos-p1 {background-color:#ff3a3a;}  /* красный */
+  .pos-p2 {background-color:#ffa03a;}  /* оранжевый */
+  .pos-p3 {background-color:#ffe33a;}  /* жёлтый */
+
+  .inst h2{margin:0 0 14px;font-size:24px}
+  .cards{display:flex;flex-direction:column;gap:14px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px 18px}
+  .card h3{margin:0 0 12px;font-size:18px;letter-spacing:.3px}
+  .card.red h3{color:#ff7d7d}.card.blue h3{color:#79a8ff}.card.green h3{color:#54e0a3}
+  .kv{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+  .pill{background:#0f1533;border:1px solid rgba(255,255,255,.12);color:#d4ddff;border-radius:12px;padding:6px 10px;font-size:13px}
+  .muted{color:#aab3da}
+  .note{opacity:.85;text-align:center;margin:10px 0 30px}
+
+  @media (max-width:720px){.grid{gap:12px}.cell{font-size:28px}.btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span data-i="titleLead">Раскрой свой</span><br><span class="glow">КРИСТАЛЛ ДУШИ</span></h1>
+  </header>
+
+  <section class="panel">
+    <div class="row">
+      <div class="control" style="flex:2;min-width:260px">
+        <label data-i="dob">Дата рождения</label>
+        <input id="dob" type="date">
+      </div>
+      <div class="control">
+        <label data-i="lang">Язык</label>
+        <div class="langbar">
+          <select id="lang">
+            <option value="auto">Auto</option>
+            <option value="ru">Русский</option>
+            <option value="uk">Українська</option>
+            <option value="bg">Български</option>
+            <option value="en">English</option>
+          </select>
+          <button id="calc" class="btn primary" data-i="calc">Рассчитать</button>
+          <button id="pdf"  class="btn ghost"   data-i="pdf">Скачать PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="vy"><span data-i="vy">Уровень Высшего Я:</span> <span id="vyVal">—</span></div>
+    <div id="grid" class="grid">
+      <div class="cell pos-p10" id="P10">—</div>
+      <div class="cell pos-p11" id="P11">—</div>
+      <div class="cell pos-p12" id="P12">—</div>
+
+      <div class="cell pos-p7" id="P7">—</div>
+      <div class="cell pos-p8" id="P8">—</div>
+      <div class="cell pos-p9" id="P9">—</div>
+
+      <div class="cell pos-p4" id="P4">—</div>
+      <div class="cell pos-p5" id="P5">—</div>
+      <div class="cell pos-p6" id="P6">—</div>
+
+      <div class="cell pos-p1" id="P1">—</div>
+      <div class="cell pos-p2" id="P2">—</div>
+      <div class="cell pos-p3" id="P3">—</div>
+    </div>
+  </section>
+
+  <section class="panel inst">
+    <h2 data-i="instTitle">Инструкция к кодам</h2>
+    <div class="cards">
+      <article class="card red">
+        <h3 data-i="k1title">1) АКТИВАЦИЯ КРИСТАЛЛА ДУШИ</h3>
+        <div class="muted" id="k1text"></div>
+        <div class="kv"><span class="pill">N1: <b id="n1">—</b></span><span class="pill">N2: <b id="n2">—</b></span><span class="pill">N3: <b id="n3">—</b></span></div>
+      </article>
+      <article class="card blue">
+        <h3 data-i="k2title">2) ЗАПУСК ТОРСИОННОГО ПОЛЯ</h3>
+        <div class="muted" id="k2text"></div>
+        <div class="kv"><span class="pill">T1: <b id="t1">—</b></span><span class="pill">T2: <b id="t2">—</b></span><span class="pill">T3: <b id="t3">—</b></span></div>
+      </article>
+      <article class="card green">
+        <h3 data-i="k3title">3) ИНТЕГРАЦИЯ ТЕЛА СВЕТА</h3>
+        <div class="muted" id="k3text"></div>
+        <div class="kv"><span class="pill">C1: <b id="c1">—</b></span><span class="pill">C2: <b id="c2">—</b></span><span class="pill">C3: <b id="c3">—</b></span></div>
+      </article>
+    </div>
+  </section>
+
+  <p class="note" data-i="pdfNote">PDF включает матрицу, уровень ВЯ и полные тексты трёх пунктов.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script>
+/* ==== i18n ==== */
+const I18N = {
+  ru:{titleLead:"Раскрой свой", dob:"Дата рождения", lang:"Язык", calc:"Рассчитать", pdf:"Скачать PDF",
+      vy:"Уровень Высшего Я:", instTitle:"Инструкция к кодам",
+      k1title:"1) АКТИВАЦИЯ КРИСТАЛЛА ДУШИ",
+      k2title:"2) ЗАПУСК ТОРСИОННОГО ПОЛЯ",
+      k3title:"3) ИНТЕГРАЦИЯ ТЕЛА СВЕТА",
+      k1text:(N1,N2,N3)=>`«Вдыхаю Свет — Выдыхаю Любовь»: ладони в намасте, вдох из центра головы в Высшее сердце; на выдохе — раскрывай руки и излучай золотой свет. <b>N1 = ${N1} раз</b>.<br>
+      «Вдыхаю Силу — Выдыхаю Волю»: вдох из солнечного сплетения в Тимус, выдох золотого света на раскрытых руках. <b>N2 = ${N2} раз</b>.<br>
+      Простукивание точки Тимуса со звуком «аа». <b>N3 = ${N3} раз</b>.`,
+      k2text:(T1,T2,T3)=>`Верхняя воронка: вращение <u>вокруг своей оси</u> по часовой стрелке, руки вверх. <b>T1 = ${T1} раз</b>.<br>
+      Нижняя воронка: вращение <u>вокруг своей оси</u> против часовой стрелки, руки вниз. <b>T2 = ${T2} раз</b>.<br>
+      Гармонизация: руки в намасте, мягкие прыжки (или резкий перенос с пятки на носок). <b>T3 = ${T3} раз</b>.`,
+      k3text:(C1,C2,C3)=>`Круги руками вперёд (обе одновременно). <b>C1 = ${C1} раз</b>.<br>
+      Круги руками назад (обе одновременно). <b>C2 = ${C2} раз</b>.<br>
+      Фиксация: ладони в намасте на груди, мягкое надавливание ладонями друг на друга. <b>C3 = ${C3} раз</b>.`,
+      pdfNote:"PDF включает матрицу, уровень ВЯ и полные тексты трёх пунктов."},
+  en:{titleLead:"Reveal your", dob:"Date of birth", lang:"Language", calc:"Calculate", pdf:"Download PDF",
+      vy:"Higher Self Level:", instTitle:"Instructions for the codes",
+      k1title:"1) SOUL CRYSTAL ACTIVATION", k2title:"2) TORSION FIELD LAUNCH", k3title:"3) LIGHT BODY INTEGRATION",
+      k1text:(N1,N2,N3)=>`“I inhale Light — I exhale Love” ... <b>N1 = ${N1} times</b>.<br>
+      “I inhale Power — I exhale Will” ... <b>N2 = ${N2} times</b>.<br>
+      Tap the thymus point while sounding “aa”. <b>N3 = ${N3} times</b>.`,
+      k2text:(T1,T2,T3)=>`Upper vortex: rotate <u>around your axis</u> clockwise, arms up. <b>T1 = ${T1} times</b>.<br>
+      Lower vortex: rotate <u>around your axis</u> counterclockwise, arms down. <b>T2 = ${T2} times</b>.<br>
+      Harmonization: palms in namaste; light jumps. <b>T3 = ${T3} times</b>.`,
+      k3text:(C1,C2,C3)=>`Arm circles forward. <b>C1 = ${C1} times</b>.<br>
+      Arm circles backward. <b>C2 = ${C2} times</b>.<br>
+      Fixation: palms in namaste on the chest. <b>C3 = ${C3} times</b>.`,
+      pdfNote:"The PDF includes the matrix, HS level and the full texts."},
+  bg:{titleLead:"Разкрий своя", dob:"Дата на раждане", lang:"Език", calc:"Изчисли", pdf:"Свали PDF",
+      vy:"Ниво на Висшето Аз:", instTitle:"Инструкции към кодовете",
+      k1title:"1) АКТИВИРАНЕ НА КРИСТАЛА НА ДУШАТА",
+      k2title:"2) СТАРТ НА ТОРСИОННОТО ПОЛЕ",
+      k3title:"3) ИНТЕГРАЦИЯ НА ТЯЛОТО НА СВЕТЛИНАТА",
+      k1text:(a,b,c)=>`„Вдишвам Светлина — Издишвам Любов“ ... <b>N1 = ${a} пъти</b>.<br>„Вдишвам Сила — Издишвам Воля“ ... <b>N2 = ${b} пъти</b>.<br>Почукване на тимуса. <b>N3 = ${c} пъти</b>.`,
+      k2text:(t1,t2,t3)=>`Горна фуния: около оста по часовника. <b>T1 = ${t1}</b>.<br>Долна фуния: обратно. <b>T2 = ${t2}</b>.<br>Хармонизация: намасте и леки подскоци. <b>T3 = ${t3}</b>.`,
+      k3text:(c1,c2,c3)=>`Кръгове напред. <b>C1=${c1}</b>.<br>Кръгове назад. <b>C2=${c2}</b>.<br>Фиксация: намасте. <b>C3=${c3}</b>.`,
+      pdfNote:"PDF включва матрица, ниво на Висшето Аз и пълните текстове."},
+  uk:{titleLead:"Розкрий свій", dob:"Дата народження", lang:"Мова", calc:"Розрахувати", pdf:"Завантажити PDF",
+      vy:"Рівень Вищого Я:", instTitle:"Інструкції до кодів",
+      k1title:"1) АКТИВАЦІЯ КРИСТАЛУ ДУШІ",
+      k2title:"2) ЗАПУСК ТОРСІЙНОГО ПОЛЯ",
+      k3title:"3) ІНТЕГРАЦІЯ ТІЛА СВІТЛА",
+      k1text:(a,b,c)=>`«Вдихаю Світло — Видихаю Любов» ... <b>N1 = ${a} разів</b>.<br>«Вдихаю Силу — Видихаю Волю» ... <b>N2 = ${b} разів</b>.<br>Постукування тимуса. <b>N3 = ${c} разів</b>.`,
+      k2text:(t1,t2,t3)=>`Верхня воронка — обертання навколо своєї осі за год. стрілкою. <b>T1=${t1}</b>.<br>Нижня — проти. <b>T2=${t2}</b>.<br>Гармонізація: намасте, легкі стрибки. <b>T3=${t3}</b>.`,
+      k3text:(c1,c2,c3)=>`Кола руками вперед. <b>C1=${c1}</b>.<br>Кола назад. <b>C2=${c2}</b>.<br>Фіксація: намасте. <b>C3=${c3}</b>.`,
+      pdfNote:"PDF містить матрицю, рівень ВЯ і повні тексти."}
+};
+function pickLang(){ const sel=document.getElementById('lang').value; if(sel!=='auto') return sel;
+  const nav=(navigator.language||'en').slice(0,2).toLowerCase(); return ['ru','en','bg','uk'].includes(nav)?nav:'ru'; }
+function applyLang(){ const L=pickLang(), t=I18N[L]; document.documentElement.lang=L;
+  document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i'); if(t[k]) el.textContent=t[k];});
+  document.querySelector('[data-i="pdfNote"]').textContent=t.pdfNote; }
+
+/* ==== Формулы ==== */
+const sumDigits=n=>String(Math.abs(n)).split('').reduce((a,b)=>a+ +b,0);
+const to12=n=>{let x=n;while(x>12)x=sumDigits(x);return x||12;};
+
+function buildPositions(iso){
+  const [Y,M,D]=iso.split('-').map(Number);
+  const P1=to12(sumDigits(D)), P2=to12(M), P3=to12(sumDigits(Y));
+  const P4=to12(P1+P2), P5=to12(P1+P3), P6=to12(P2+P3);
+  const P7=to12(P4+P5), P8=to12(P4+P6), P9=to12(P5+P6);
+  const P10=to12(P7+P8), P11=to12(P7+P9), P12=to12(P8+P9);
+  return {Y,M,D,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12};
+}
+function computeVY({Y,M,D}){ const c=Math.floor(Y/100), t=Math.floor((Y%100)/10); return D+M+c+t; }
+function computeCodes(P){
+  const N1=P.P5, N2=P.P8, N3=to12(P.P5+P.P8);
+  const T1=to12(P.P8+P.P10+P.P12), T2=to12(P.P1+P.P3+P.P5), T3=to12(T1+T2);
+  const C1=to12(P.P2+P.P4+P.P6), C2=to12(P.P7+P.P9+P.P11), C3=to12(C1+C2);
+  return {N1,N2,N3,T1,T2,T3,C1,C2,C3};
+}
+
+/* ==== UI ==== */
+function drawGrid(P){["P10","P11","P12","P7","P8","P9","P4","P5","P6","P1","P2","P3"].forEach(id=>{document.getElementById(id).textContent=P[id];});}
+function drawInstructions(P){
+  const L=pickLang(), t=I18N[L]; const {N1,N2,N3,T1,T2,T3,C1,C2,C3}=computeCodes(P);
+  document.getElementById('k1text').innerHTML=t.k1text(N1,N2,N3);
+  document.getElementById('k2text').innerHTML=t.k2text(T1,T2,T3);
+  document.getElementById('k3text').innerHTML=t.k3text(C1,C2,C3);
+  ['n1','n2','n3','t1','t2','t3','c1','c2','c3']
+    .forEach((id,i)=>document.getElementById(id).textContent,[N1,N2,N3,T1,T2,T3,C1,C2,C3][i]);
+}
+const $=s=>document.querySelector(s);
+function recalc(){ const iso=$('#dob').value; if(!iso){alert('Выбери дату');return;}
+  const P=buildPositions(iso); drawGrid(P); $('#vyVal').textContent=computeVY(P); drawInstructions(P); }
+document.getElementById('calc').addEventListener('click',recalc);
+document.getElementById('lang').addEventListener('change',()=>{applyLang(); const v=$('#vyVal').textContent.trim(); if(v!=='—') recalc();});
+
+/* ==== PDF ==== */
+document.getElementById('pdf').addEventListener('click',async()=>{
+  const L=pickLang(), t=I18N[L], {jsPDF}=window.jspdf; const pdf=new jsPDF({unit:"pt",format:"a4"});
+  pdf.setFillColor(13,16,32); pdf.rect(0,0,pdf.internal.pageSize.getWidth(),pdf.internal.pageSize.getHeight(),"F");
+  pdf.setTextColor(255,255,255); pdf.setFont("helvetica","bold"); pdf.setFontSize(28);
+  pdf.text(t.titleLead||"Reveal your",60,120);
+  pdf.setTextColor(255,230,156); pdf.setFontSize(42);
+  pdf.text(L==='en'?"SOUL CRYSTAL":(L==='bg'?"КРИСТАЛ НА ДУШАТА":(L==='uk'?"КРИСТАЛ ДУШІ":"КРИСТАЛЛ ДУШИ")),60,170);
+
+  pdf.addPage();
+  const node1=document.querySelectorAll('.panel')[1].cloneNode(true);
+  node1.style.background="transparent"; node1.style.boxShadow="none";
+  const temp1=document.createElement("div"); temp1.style.position="fixed"; temp1.style.left="-9999px"; temp1.style.top="0"; temp1.style.width="920px";
+  temp1.appendChild(node1); document.body.appendChild(temp1);
+  const canvas1=await html2canvas(node1,{backgroundColor:"#0d1020",scale:2});
+  document.body.removeChild(temp1);
+  const img1=canvas1.toDataURL("image/png");
+  const pw=pdf.internal.pageSize.getWidth(), ph=pdf.internal.pageSize.getHeight();
+  let r=Math.min((pw-80)/canvas1.width,(ph-120)/canvas1.height); pdf.addImage(img1,"PNG",40,40,canvas1.width*r,canvas1.height*r);
+
+  pdf.addPage();
+  const node2=document.querySelectorAll('.panel')[2].cloneNode(true);
+  node2.style.background="transparent"; node2.style.boxShadow="none";
+  const temp2=document.createElement("div"); temp2.style.position="fixed"; temp2.style.left="-9999px"; temp2.style.top="0"; temp2.style.width="920px";
+  temp2.appendChild(node2); document.body.appendChild(temp2);
+  const canvas2=await html2canvas(node2,{backgroundColor:"#0d1020",scale:2});
+  document.body.removeChild(temp2);
+  const img2=canvas2.toDataURL("image/png");
+  r=Math.min((pw-80)/canvas2.width,(ph-120)/canvas2.height); pdf.addImage(img2,"PNG",40,40,canvas2.width*r,canvas2.height*r);
+
+  const fname=(L==='ru'?'Kristall_dushi': L==='bg'?'Kristal_na_dushata': L==='uk'?'Kristal_dushi':'Soul_Crystal')+".pdf";
+  pdf.save(fname);
+});
+
+/* ==== init ==== */
+(function(){ document.getElementById('dob').value='1969-05-22'; applyLang(); recalc(); })();
+</script>
+</body>
+</html>
